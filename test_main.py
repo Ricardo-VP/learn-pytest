@@ -1,5 +1,5 @@
 import pytest
-from main import suma
+from main import suma, write
 
 def test_suma():
     assert suma(2, 2) == 4
@@ -15,3 +15,15 @@ def test_suma():
 )
 def test_suma_multi(input_a, input_b, expected):
     assert suma(input_a, input_b) == expected
+
+###
+
+def test_tmp_dir(tmpdir):
+    data_in = 'Ricardo Vaca'
+    fpath = f"{tmpdir}/test.txt"
+    write(fpath, data_in)
+
+    with open(fpath) as file_out:
+        data_out = file_out.read()
+    
+    assert data_in == data_out
